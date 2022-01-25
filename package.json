@@ -9,7 +9,8 @@
     "build": "nx build",
     "test": "nx test",
     
-    "start:travel-app": "nx serve travel-app"
+    "start:travel-app": "nx serve travel-app",
+    "test:travel-app": "nx test travel-app"
   },
   "private": true,
   "dependencies": {
