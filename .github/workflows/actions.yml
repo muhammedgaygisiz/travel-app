@@ -46,13 +46,16 @@ jobs:
         uses: actions/setup-node@v1
         with: 
           node-version: '16'
-      - run: npm install
-      - run: npx nx-cloud start-ci-run
+      - name: Install
+        run: npm install
+      - name: Start CI run
+        run: npx nx-cloud start-ci-run
       - name: Build
         run: npx nx affected --target=build --parallel --max-parallel=3
       - name: Test
         run: npx nx affected --target=test --parallel --max-parallel=2
-      - run: npx nx-cloud stop-all-agents
+      - name: Stop all agents
+        run: npx nx-cloud stop-all-agents
   agents:
     runs-on: ubuntu-latest
     name: Agent 1
