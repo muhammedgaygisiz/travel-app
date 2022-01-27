@@ -34,6 +34,15 @@ jobs:
         run: npx nx affected --target=test --parallel --max-parallel=2
       - name: Stop all agents
         run: npx nx-cloud stop-all-agents
+      - name: Deploy to firebase
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TRAVEL_APP_E238C }}'
+          channelId: live
+          projectId: travel-app-e238c
+      env:
+        FIREBASE_CLI_PREVIEWS: hostingchannels
   pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
@@ -61,6 +70,14 @@ jobs:
         run: npx nx affected --target=test --parallel --max-parallel=2
       - name: Stop all agents
         run: npx nx-cloud stop-all-agents
+      - name: Preview of Pull Request
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TRAVEL_APP_E238C }}'
+          projectId: travel-app-e238c
+        env:
+          FIREBASE_CLI_PREVIEWS: hostingchannels
   agents:
     runs-on: ubuntu-latest
     name: Agent 1
