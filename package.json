@@ -1,6 +1,6 @@
 {
   "name": "travel-app",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "ng": "nx",
@@ -8,7 +8,6 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    
     "start:travel-app": "nx serve travel-app",
     "test:travel-app": "nx test travel-app"
   },

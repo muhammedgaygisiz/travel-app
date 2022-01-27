@@ -1,4 +1,4 @@
-name: CI
+name: Travel App CI
 on:
   push:
     branches:
@@ -14,37 +14,70 @@ jobs:
     if: ${{ github.event_name != 'pull_request' }}
     steps:
       - uses: actions/checkout@v2
-        name: Checkout [main]
+        name: Checkout [develop]
         with:
           fetch-depth: 0
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v2
+        with:
+          main-branch-name: 'develop'
       - uses: actions/setup-node@v1 
         with: 
-          node-version: '14'
-      - run: npm install
-      - run: npx nx-cloud start-ci-run    
-      - run: npx nx affected --target=build --parallel --max-parallel=3
-      - run: npx nx affected --target=test --parallel --max-parallel=2
-      - run: npx nx-cloud stop-all-agents
+          node-version: '16'
+      - name: Install
+        run: npm install
+      - name: Start CI run
+        run: npx nx-cloud start-ci-run    
+      - name: Build
+        run: npx nx affected --target=build --parallel --max-parallel=3
+      - name: Test
+        run: npx nx affected --target=test --parallel --max-parallel=2
+      - name: Stop all agents
+        run: npx nx-cloud stop-all-agents
+      - name: Deploy to firebase
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TRAVEL_APP_E238C }}'
+          channelId: live
+          projectId: travel-app-e238c
+        env:
+          FIREBASE_CLI_PREVIEWS: hostingchannels
   pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout branch
+        uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v2
-      - uses: actions/setup-node@v1
+        with:
+          main-branch-name: 'develop'
+      - name: Setup node
+        uses: actions/setup-node@v1
         with: 
-          node-version: '14'
-      - run: npm install
-      - run: npx nx-cloud start-ci-run
-      - run: npx nx affected --target=build --parallel --max-parallel=3
-      - run: npx nx affected --target=test --parallel --max-parallel=2
-      - run: npx nx-cloud stop-all-agents
+          node-version: '16'
+      - name: Install
+        run: npm install
+      - name: Start CI run
+        run: npx nx-cloud start-ci-run
+      - name: Build
+        run: npx nx affected --target=build --parallel --max-parallel=3
+      - name: Test
+        run: npx nx affected --target=test --parallel --max-parallel=2
+      - name: Stop all agents
+        run: npx nx-cloud stop-all-agents
+      - name: Preview of Pull Request
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TRAVEL_APP_E238C }}'
+          projectId: travel-app-e238c
+        env:
+          FIREBASE_CLI_PREVIEWS: hostingchannels
   agents:
     runs-on: ubuntu-latest
     name: Agent 1
