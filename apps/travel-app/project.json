@@ -6,7 +6,9 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/travel-app",
         "index": "apps/travel-app/src/index.html",
@@ -16,10 +18,15 @@
         "inlineStyleLanguage": "scss",
         "assets": [
           "apps/travel-app/src/favicon.ico",
-          "apps/travel-app/src/assets"
+          "apps/travel-app/src/assets",
+          "apps/travel-app/src/manifest.webmanifest"
         ],
-        "styles": ["apps/travel-app/src/styles.scss"],
-        "scripts": []
+        "styles": [
+          "apps/travel-app/src/styles.scss"
+        ],
+        "scripts": [],
+        "serviceWorker": true,
+        "ngswConfigPath": "apps/travel-app/ngsw-config.json"
       },
       "configurations": {
         "production": {
@@ -83,7 +90,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/travel-app"],
+      "outputs": [
+        "coverage/apps/travel-app"
+      ],
       "options": {
         "jestConfig": "apps/travel-app/jest.config.js",
         "passWithNoTests": true
