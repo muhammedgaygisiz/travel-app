@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'travel-app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  template: '<p>Hello Moto</p>',
+  styles: [],
 })
 export class AppComponent {
 }
