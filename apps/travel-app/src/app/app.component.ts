@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
             <mat-icon>close</mat-icon>
           </button>
         </div>
-        <p>Drawer Content</p>
+        <button mat-raised-button color="primary">TODOs</button>
       </mat-sidenav>
       <mat-sidenav-content>
         <mat-toolbar color="primary">
