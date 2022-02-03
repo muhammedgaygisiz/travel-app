@@ -4,7 +4,15 @@ import { Component } from '@angular/core';
   selector: 'travel-app-root',
   template: `
     <mat-sidenav-container hasBackdrop autosize>
-      <mat-sidenav mode="side" #sidenav>Drawer Content</mat-sidenav>
+      <mat-sidenav mode="side" #sidenav>
+        <div class="menu-item">
+          <span class="filler"></span>
+          <button mat-icon-button (click)="sidenav.close()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+        <button mat-raised-button color="primary">TODOs</button>
+      </mat-sidenav>
       <mat-sidenav-content>
         <mat-toolbar color="primary">
           <button mat-icon-button (click)="sidenav.toggle()">
@@ -23,6 +31,14 @@ import { Component } from '@angular/core';
 
       .mat-sidenav {
         padding: 20px;
+      }
+
+      .menu-item {
+        display: flex;
+      }
+
+      .filler {
+        flex: 1 1 auto;
       }
     `,
   ],
