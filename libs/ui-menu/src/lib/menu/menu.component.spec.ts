@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UiMenuModule } from '../ui-menu.module';
 import { MenuComponent } from './menu.component';
 
 describe('MenuComponent', () => {
@@ -8,9 +9,8 @@ describe('MenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MenuComponent ]
-    })
-    .compileComponents();
+      imports: [BrowserAnimationsModule, UiMenuModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
