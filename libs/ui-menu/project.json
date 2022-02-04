@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/ui-menu",
+  "sourceRoot": "libs/ui-menu/src",
+  "prefix": "travel-app",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ui-menu"],
+      "options": {
+        "jestConfig": "libs/ui-menu/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ui-menu/src/**/*.ts",
+          "libs/ui-menu/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
