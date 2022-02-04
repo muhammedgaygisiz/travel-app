@@ -10,7 +10,8 @@
     "build": "nx build",
     "test": "nx test",
     "start:travel-app": "nx serve travel-app",
-    "test:travel-app": "nx test travel-app"
+    "test:travel-app": "nx test travel-app",
+    "test:all": "nx run-many --target=test --all "
   },
   "private": true,
   "dependencies": {
