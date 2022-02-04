@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "travel-app": "apps/travel-app",
-    "travel-app-e2e": "apps/travel-app-e2e"
+    "travel-app-e2e": "apps/travel-app-e2e",
+    "ui-menu": "libs/ui-menu"
   }
 }
