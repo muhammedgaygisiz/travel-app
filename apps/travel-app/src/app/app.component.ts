@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'travel-app-root',
   template: `
     <travel-app-menu>
-      <p>Welcome to Travel App</p>
+      <router-outlet></router-outlet>
     </travel-app-menu>
   `,
 })
