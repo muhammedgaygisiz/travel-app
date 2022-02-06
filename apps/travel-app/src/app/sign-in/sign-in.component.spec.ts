@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignInComponent } from './sign-in.component';
+import { SignInModule } from './sign-in.module';
 
 describe('SignInComponent', () => {
   let component: SignInComponent;
@@ -8,9 +9,8 @@ describe('SignInComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SignInComponent ]
-    })
-    .compileComponents();
+      imports: [BrowserAnimationsModule, SignInModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
