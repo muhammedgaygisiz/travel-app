@@ -2,7 +2,7 @@
   <mat-sidenav mode="side" #sidenav>
     <div class="menu-item">
       <span class="filler"></span>
-      <button mat-icon-button (click)="sidenav.close()">
+      <button mat-icon-button (click)="sidenav.close()" aria-label="Close menu">
         <mat-icon>close</mat-icon>
       </button>
     </div>
@@ -10,7 +10,11 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button mat-icon-button (click)="sidenav.toggle()">
+      <button
+        mat-icon-button
+        (click)="sidenav.toggle()"
+        aria-label="Toggle menu"
+      >
         <mat-icon>menu</mat-icon>
       </button>
       <span>Travel App</span>
