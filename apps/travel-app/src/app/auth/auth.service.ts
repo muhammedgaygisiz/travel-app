@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   signIn(email: string, password: string) {
-    console.log(email, password);
+    console.log('AuthService', email, password);
   }
 
   signUp(email: string, password: string) {

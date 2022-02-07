@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Login } from './api/login';
 
 @Component({
   selector: 'travel-app-sign-in',
@@ -7,6 +8,9 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent {
+  @Output()
+  login: EventEmitter<Login> = new EventEmitter();
+
   loginForm = this.fb.group({
     username: ['', Validators.required],
     password: ['', Validators.required],
@@ -15,7 +19,6 @@ export class SignInComponent {
   constructor(private fb: FormBuilder) {}
 
   onSubmit() {
-    console.warn(this.loginForm.value);
-    console.warn(this.loginForm.valid);
+    this.login.emit(this.loginForm.value);
   }
 }
