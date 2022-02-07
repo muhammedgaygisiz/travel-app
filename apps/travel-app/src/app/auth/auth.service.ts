@@ -1,11 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Optional } from '@angular/core';
+import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  constructor(@Optional() private auth: Auth) {}
+
   signIn(email: string, password: string) {
-    console.log('AuthService', email, password);
+    signInWithEmailAndPassword(this.auth, email, password).then((creds) =>
+      console.log(creds)
+    );
   }
 
   signUp(email: string, password: string) {
