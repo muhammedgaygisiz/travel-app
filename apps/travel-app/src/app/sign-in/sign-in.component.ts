@@ -11,8 +11,11 @@ export class SignInComponent {
   @Output()
   login: EventEmitter<Login> = new EventEmitter();
 
+  @Output()
+  goToSignUp: EventEmitter<void> = new EventEmitter();
+
   loginForm = this.fb.group({
-    username: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
   });
 
@@ -20,5 +23,9 @@ export class SignInComponent {
 
   onSubmit() {
     this.login.emit(this.loginForm.value);
+  }
+
+  onSignUp() {
+    this.goToSignUp.emit();
   }
 }
