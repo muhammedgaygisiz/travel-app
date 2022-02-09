@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { Auth } from '@angular/fire/auth';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthService } from './auth.service';
 
 describe('AuthService', () => {
@@ -13,6 +14,7 @@ describe('AuthService', () => {
           useValue: jest.fn(),
         },
       ],
+      imports: [MatSnackBarModule],
     });
     service = TestBed.inject(AuthService);
   });
